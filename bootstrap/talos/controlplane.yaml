@@ -1,0 +1,48 @@
+# Schematic ID: e187c9b90f773cd8c84e5a3265c5554ee787b2fe67b508d9f955e90e7ae8c96c
+#
+# curl -X POST --data-binary @- https://factory.talos.dev/schematics <<EOF
+# customization:
+#   systemExtensions:
+#     officialExtensions:
+#       - siderolabs/iscsi-tools
+#       - siderolabs/util-linux-tools
+#       - siderolabs/qemu-guest-agent
+# EOF
+
+machine:
+  install:
+    image: factory.talos.dev/installer/e187c9b90f773cd8c84e5a3265c5554ee787b2fe67b508d9f955e90e7ae8c96c:v1.12.0
+
+  network:
+    interfaces:
+      - interface: ens18
+        dhcp: true
+        vip:
+          ip: 10.0.203.100
+
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true
+    extraMounts:
+      - destination: /var/mnt/longhorn
+        type: bind
+        source: /var/mnt/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+
+cluster:
+  network:
+    cni:
+      name: none
+    proxy:
+      disabled: true
+
+  extraManifests:
+    - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.1/standard-install.yaml
+    - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+    - https://raw.githubusercontent.com/injunweb/k8s-bootstrap/main/manifests/cilium.yaml
+    - https://raw.githubusercontent.com/injunweb/k8s-bootstrap/main/manifests/metrics-server.yaml
+    - https://raw.githubusercontent.com/injunweb/k8s-bootstrap/main/manifests/longhorn-system.yaml
+    - https://raw.githubusercontent.com/injunweb/k8s-bootstrap/main/manifests/argocd.yaml

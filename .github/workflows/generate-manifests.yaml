@@ -1,0 +1,45 @@
+name: Generate Manifests
+
+on:
+  push:
+    paths:
+      - 'charts/*/values.yaml'
+      - 'charts/*/Chart.yaml'
+    branches:
+      - main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.13.0
+
+      - name: Generate manifests
+        run: |
+          for chart_dir in charts/*/; do
+            chart_name=$(basename "$chart_dir")
+            echo "Processing chart: $chart_name"
+
+            cd "charts/$chart_name"
+            helm dependency build
+            cd ../..
+
+            helm template "$chart_name" "charts/$chart_name" > "manifests/${chart_name}.yaml"
+          done
+
+      - name: Commit and push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add manifests/
+          git diff --staged --quiet || git commit -m "chore: regenerate manifests [skip ci]"
+          git push

@@ -1,0 +1,35 @@
+# Schematic ID: e187c9b90f773cd8c84e5a3265c5554ee787b2fe67b508d9f955e90e7ae8c96c
+#
+# curl -X POST --data-binary @- https://factory.talos.dev/schematics <<EOF
+# customization:
+#   systemExtensions:
+#     officialExtensions:
+#       - siderolabs/iscsi-tools
+#       - siderolabs/util-linux-tools
+#       - siderolabs/qemu-guest-agent
+# EOF
+
+machine:
+  install:
+    image: factory.talos.dev/installer/e187c9b90f773cd8c84e5a3265c5554ee787b2fe67b508d9f955e90e7ae8c96c:v1.12.0
+
+  kubelet:
+    extraArgs:
+      rotate-server-certificates: true
+    extraMounts:
+      - destination: /var/mnt/longhorn
+        type: bind
+        source: /var/mnt/longhorn
+        options:
+          - bind
+          - rshared
+          - rw
+
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+metadata:
+  name: longhorn
+provisioning:
+  diskSelector:
+    match: disk.dev_path == '/dev/sdb'
