@@ -5,7 +5,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-application-controller
@@ -21,7 +21,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-applicationset-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-applicationset-controller
@@ -37,7 +37,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-notifications-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-notifications-controller
@@ -53,7 +53,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-repo-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-repo-server
@@ -69,7 +69,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-server
@@ -85,7 +85,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-dex-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-dex-server
@@ -100,7 +100,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: argocd-notifications-secret
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-notifications-controller
@@ -117,7 +117,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: argocd-secret
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-secret
@@ -133,7 +133,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-cm
@@ -157,7 +157,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cmd-params-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-cmd-params-cm
@@ -206,7 +206,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-gpg-keys-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-gpg-keys-cm
@@ -220,7 +220,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-notifications-controller
@@ -238,7 +238,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-rbac-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-rbac-cm
@@ -258,7 +258,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-ssh-known-hosts-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-ssh-known-hosts-cm
@@ -288,7 +288,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-tls-certs-cm
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-tls-certs-cm
@@ -302,7 +302,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-redis-health-configmap
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-redis
@@ -22510,7 +22510,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-notifications/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -22532,7 +22532,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-notifications-controller
-  namespace: default
+  namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-server/clusterrolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -22554,14 +22554,14 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-server
-  namespace: default
+  namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-application-controller/role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-application-controller
@@ -22614,7 +22614,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-applicationset-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-applicationset-controller
@@ -22711,7 +22711,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-notifications-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-notifications-controller
@@ -22762,7 +22762,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-repo-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-repo-server
@@ -22778,7 +22778,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-server
@@ -22828,7 +22828,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-dex-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-dex-server
@@ -22853,7 +22853,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-application-controller
@@ -22869,14 +22869,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: argocd-application-controller
-    namespace: default
+    namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-applicationset/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-applicationset-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-applicationset-controller
@@ -22892,14 +22892,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: argocd-applicationset-controller
-    namespace: default
+    namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-notifications/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-notifications-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-notifications-controller
@@ -22915,14 +22915,14 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: argocd-notifications-controller
-    namespace: default
+    namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-repo-server/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-repo-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-repo-server
@@ -22938,14 +22938,14 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-repo-server
-  namespace: default
+  namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-server/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-server
@@ -22961,14 +22961,14 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-server
-  namespace: default
+  namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/dex/rolebinding.yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-dex-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-dex-server
@@ -22984,14 +22984,14 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-dex-server
-  namespace: default
+  namespace: argocd
 ---
 # Source: argocd/charts/argo-cd/templates/argocd-applicationset/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: argocd-applicationset-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-applicationset-controller
@@ -23023,7 +23023,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.13.2"
   name: argocd-repo-server
-  namespace: default
+  namespace: argocd
 spec:  
   ports:
   - name: tcp-repo-server
@@ -23039,7 +23039,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: argocd-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-server
@@ -23069,7 +23069,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: argocd-dex-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-dex-server
@@ -23097,7 +23097,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: argocd-redis
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-redis
@@ -23120,7 +23120,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-applicationset-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-applicationset-controller
@@ -23139,7 +23139,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/cmd-params: 143de995c329d52ce3ad4bb1328853674c88a878336af2ffbdd06789f036e4c2
+        checksum/cmd-params: 17d36589e28477a37996024242ce930366a85683607a48f7c702a0b5b01c3144
       labels:
         helm.sh/chart: argo-cd-7.7.11
         app.kubernetes.io/name: argocd-applicationset-controller
@@ -23373,7 +23373,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-notifications-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-notifications-controller
@@ -23414,7 +23414,7 @@ spec:
             - --metrics-port=9001
             - --loglevel=info
             - --logformat=text
-            - --namespace=default
+            - --namespace=argocd
             - --argocd-repo-server=argocd-repo-server:8081
             - --secret-name=argocd-notifications-secret
           env:
@@ -23500,7 +23500,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-repo-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-repo-server
@@ -23519,8 +23519,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/cmd-params: 143de995c329d52ce3ad4bb1328853674c88a878336af2ffbdd06789f036e4c2
-        checksum/cm: a82311b8cd4f805fe07ac4bc91e5c1430d4f090c2fcee8fc23d475ad136e9374
+        checksum/cmd-params: 17d36589e28477a37996024242ce930366a85683607a48f7c702a0b5b01c3144
+        checksum/cm: 58bc2f1e73efee5c1dd8ac1556af8037b0a18f326d75dacf41d7638dc104216a
       labels:
         helm.sh/chart: argo-cd-7.7.11
         app.kubernetes.io/name: argocd-repo-server
@@ -23877,7 +23877,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-server
@@ -23896,8 +23896,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/cmd-params: 143de995c329d52ce3ad4bb1328853674c88a878336af2ffbdd06789f036e4c2
-        checksum/cm: a82311b8cd4f805fe07ac4bc91e5c1430d4f090c2fcee8fc23d475ad136e9374
+        checksum/cmd-params: 17d36589e28477a37996024242ce930366a85683607a48f7c702a0b5b01c3144
+        checksum/cm: 58bc2f1e73efee5c1dd8ac1556af8037b0a18f326d75dacf41d7638dc104216a
       labels:
         helm.sh/chart: argo-cd-7.7.11
         app.kubernetes.io/name: argocd-server
@@ -24320,7 +24320,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-dex-server
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-dex-server
@@ -24339,7 +24339,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/cmd-params: 143de995c329d52ce3ad4bb1328853674c88a878336af2ffbdd06789f036e4c2
+        checksum/cmd-params: 17d36589e28477a37996024242ce930366a85683607a48f7c702a0b5b01c3144
       labels:
         helm.sh/chart: argo-cd-7.7.11
         app.kubernetes.io/name: argocd-dex-server
@@ -24466,7 +24466,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-redis
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-redis
@@ -24552,7 +24552,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: argocd-application-controller
-  namespace: default
+  namespace: argocd
   labels:
     helm.sh/chart: argo-cd-7.7.11
     app.kubernetes.io/name: argocd-application-controller
@@ -24572,8 +24572,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/cmd-params: 143de995c329d52ce3ad4bb1328853674c88a878336af2ffbdd06789f036e4c2
-        checksum/cm: a82311b8cd4f805fe07ac4bc91e5c1430d4f090c2fcee8fc23d475ad136e9374
+        checksum/cmd-params: 17d36589e28477a37996024242ce930366a85683607a48f7c702a0b5b01c3144
+        checksum/cm: 58bc2f1e73efee5c1dd8ac1556af8037b0a18f326d75dacf41d7638dc104216a
       labels:
         helm.sh/chart: argo-cd-7.7.11
         app.kubernetes.io/name: argocd-application-controller
@@ -24890,7 +24890,7 @@ kind: ServiceAccount
 automountServiceAccountToken: true
 metadata:
   name: argocd-redis-secret-init
-  namespace: "default"
+  namespace: "argocd"
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation
@@ -24919,7 +24919,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.13.2"
   name: argocd-redis-secret-init
-  namespace: "default"
+  namespace: "argocd"
 rules:
   - apiGroups:
       - ""
@@ -24952,7 +24952,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
     app.kubernetes.io/version: "v2.13.2"
   name: argocd-redis-secret-init
-  namespace: "default"
+  namespace: "argocd"
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -24966,7 +24966,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: argocd-redis-secret-init
-  namespace: "default"
+  namespace: "argocd"
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation
