@@ -3,23 +3,32 @@
 ## 1. Bootstrap Cluster
 
 ```bash
-# Generate Config
-talosctl gen config talos-cluster https://10.0.203.100:6443 --output-dir _out
+VIP="10.0.203.100"
+CONTROLPLANE_NODES=(
+  10.0.203.11
+  10.0.203.12
+  10.0.203.13
+)
+WORKER_NODES=(
+  10.0.203.21
+  10.0.203.22
+  10.0.203.23
+)
 
-# Apply Config
-for node in 10.0.203.11 10.0.203.12 10.0.203.13; do
+talosctl gen config talos-cluster https://${VIP}:6443 --output-dir _out
+
+for node in "${CONTROLPLANE_NODES[@]}"; do
   talosctl apply-config --insecure --nodes $node \
     --file _out/controlplane.yaml --config-patch @bootstrap/talos/controlplane.yaml
 done
 
-for node in 10.0.203.21 10.0.203.22 10.0.203.23; do
+for node in "${WORKER_NODES[@]}"; do
   talosctl apply-config --insecure --nodes $node \
     --file _out/worker.yaml --config-patch @bootstrap/talos/worker.yaml
 done
 
-# Bootstrap (once)
 export TALOSCONFIG="_out/talosconfig"
-talosctl config endpoint 10.0.203.11
+talosctl config endpoint ${CONTROLPLANE_NODES[0]}
 talosctl bootstrap
 talosctl kubeconfig _out/kubeconfig
 ```
