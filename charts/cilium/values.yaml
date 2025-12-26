@@ -1,4 +1,6 @@
 cilium:
+  namespaceOverride: kube-system
+
   ipam:
     mode: kubernetes
 

@@ -1,4 +1,6 @@
 argo-cd:
+  namespaceOverride: argocd
+
   global:
     domain: argocd.example.com
 

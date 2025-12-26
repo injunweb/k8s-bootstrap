@@ -1,3 +1,5 @@
 longhorn:
+  namespaceOverride: longhorn-system
+
   defaultSettings:
     defaultDataPath: /var/mnt/longhorn

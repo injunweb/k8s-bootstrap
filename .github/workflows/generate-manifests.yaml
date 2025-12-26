@@ -33,7 +33,7 @@ jobs:
             helm dependency build
             cd ../..
 
-            helm template "$chart_name" "charts/$chart_name" > "manifests/${chart_name}.yaml"
+            helm template "$chart_name" "charts/$chart_name" --namespace "$chart_name" > "manifests/${chart_name}.yaml"
           done
 
       - name: Commit and push
