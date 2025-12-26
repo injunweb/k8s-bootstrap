@@ -55,6 +55,7 @@ helm install cilium cilium/cilium --version 1.18.5 \
 
 # Longhorn Storage
 helm repo add longhorn https://charts.longhorn.io
+kubectl label ns longhorn-system pod-security.kubernetes.io/enforce=privileged --overwrite
 helm install longhorn longhorn/longhorn --version 1.7.2 \
   --namespace longhorn-system --create-namespace \
   --set defaultSettings.defaultDataPath=/var/mnt/longhorn
