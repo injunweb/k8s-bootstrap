@@ -29,8 +29,8 @@ done
 
 export TALOSCONFIG="_out/talosconfig"
 talosctl config endpoint ${CONTROLPLANE_NODES[0]}
-talosctl bootstrap
-talosctl kubeconfig _out/kubeconfig
+talosctl bootstrap --nodes ${CONTROLPLANE_NODES[0]}
+talosctl kubeconfig _out/kubeconfig --nodes ${CONTROLPLANE_NODES[0]}
 ```
 
 ## 2. Install CNI & Applications
