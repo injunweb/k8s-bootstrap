@@ -2,6 +2,4 @@ _out/
 *.iso
 talosconfig
 kubeconfig
-charts/*/charts/
-charts/*/Chart.lock
 .DS_Store

@@ -32,4 +32,4 @@ metadata:
   name: longhorn
 provisioning:
   diskSelector:
-    match: disk.dev_path == '/dev/sdb'
+    match: "'/dev/sdb' in disk.symlinks"

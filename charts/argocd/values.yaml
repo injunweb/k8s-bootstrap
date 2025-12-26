@@ -1,9 +1,0 @@
-argo-cd:
-  namespaceOverride: argocd
-
-  global:
-    domain: argocd.example.com
-
-  configs:
-    params:
-      server.insecure: true
