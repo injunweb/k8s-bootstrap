@@ -28,8 +28,9 @@ machine:
 ---
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-metadata:
-  name: longhorn
+name: longhorn
 provisioning:
   diskSelector:
     match: "'/dev/sdb' in disk.symlinks"
+  grow: false
+  minSize: 10GB
